@@ -1,0 +1,42 @@
+# Maintainer: Frank Qin <qinzhiheng24 at gmail dot com>
+
+pkgname='gnome-shell-extension-clock-formatter-git'
+pkgver=0
+pkgrel=1
+pkgdesc='A lightweight Gnome extension for custom system clock format'
+arch=('any')
+url='https://github.com/zhihengq/clock-formatter'
+license=('GPL3')
+depends=('gnome-shell>=1:42')
+makedepends=('glib2')
+install='gschemas.install'
+source=("$pkgname::git+$url.git")
+sha256sums=('SKIP')
+
+pkgver() {
+	cd "$pkgname"
+	printf 'r%s.%s' "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+build() {
+	cd "$pkgname"
+	glib-compile-schemas schemas
+}
+
+package() {
+	cd "$pkgname"
+	uuid='clock-formatter@zhihengq.github.com'
+
+	# Install the extension
+	install -d "$pkgdir/usr/share/gnome-shell/extensions/$uuid"
+	install -d "$pkgdir/usr/share/gnome-shell/extensions/$uuid/schemas"
+	install -m644 'schemas/org.gnome.shell.extensions.clock-formatter.gschema.xml' "$pkgdir/usr/share/gnome-shell/extensions/$uuid/schemas"
+	install -m644 'schemas/gschemas.compiled' "$pkgdir/usr/share/gnome-shell/extensions/$uuid/schemas"
+	install -m644 'metadata.json' "$pkgdir/usr/share/gnome-shell/extensions/$uuid"
+	install -m644 'extension.js' "$pkgdir/usr/share/gnome-shell/extensions/$uuid"
+	install -m644 'prefs.js' "$pkgdir/usr/share/gnome-shell/extensions/$uuid"
+
+	# Install the gschema
+	install -d "$pkgdir/usr/share/glib-2.0/schemas"
+	install -m644 "schemas/org.gnome.shell.extensions.clock-formatter.gschema.xml" "$pkgdir/usr/share/glib-2.0/schemas/"
+}
