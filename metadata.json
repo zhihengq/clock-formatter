@@ -5,5 +5,6 @@
   "settings-schema": "org.gnome.shell.extensions.clock-formatter",
   "shell-version": [
     "42"
-  ]
+  ],
+  "url": "https://github.com/zhihengq/clock-formatter"
 }
