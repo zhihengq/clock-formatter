@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema id="org.gnome.shell.extensions.clock-formatter" path="/org/gnome/shell/extensions/clock-formatter/">
+    <key name="format" type="s">
+      <default>'%FT%T%:z'</default>
+      <summary>Clock format string</summary>
+      <description>Format string used by Glib DateTime.format. See https://docs.gtk.org/glib/method.DateTime.format.html</description>
+    </key>
+  </schema>
+</schemalist>

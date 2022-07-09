@@ -1,0 +1,9 @@
+{
+  "name": "Clock Formatter",
+  "description": "Change system clock format",
+  "uuid": "clock-formatter@zhihengq.github.com",
+  "settings-schema": "org.gnome.shell.extensions.clock-formatter",
+  "shell-version": [
+    "42"
+  ]
+}
